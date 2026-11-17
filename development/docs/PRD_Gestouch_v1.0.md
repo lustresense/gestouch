@@ -6,7 +6,7 @@
 > **Status:** Architecture, UX, data contract, release criteria specified; **Phase 0 hardware feasibility and physical performance validation NOT completed**.  
 > **Companion:** `WIREFRAMES_Interactive.html` (clickable low-fidelity layouts). Every core flow is specified and wireframed *also inside this PRD*. See `preview_dashboard.png` and `preview_builder.png` for static thumbnails.  
 > **Upstream source baseline:** `Tomclanc/GestureSignv2` commit `8e331791ca7c203a15f707871b803c2e94c63749` (2026-11-16). Root license GPL-2.0.  
-> **Legal strategy:** independent Rust codebase, proposed `MIT OR Apache-2.0`; this is **not** a relicense or line-by-line translation of GPL code.
+> **Legal strategy:** independent Rust codebase, current repository license `GPL-2.0-only`; the implementation is independent, not a mechanical translation of GPL C# code.
 
 ## 0. How to use this PRD
 
@@ -166,9 +166,9 @@ touch-engine/
   installer/                    # WiX or evaluated native MSI pipeline
   assets/                       # original monochrome assets only
   tests/                        # integration, adversarial, physical test scripts
-  docs/                         # help, security, device support, architecture
+  development/                 # build scripts, engineering docs, UI wireframes
   .github/workflows/           # format, clippy, test, build, SBOM, release
-  LICENSE-MIT  LICENSE-APACHE
+  LICENSE                       # GPL-2.0-only
   SECURITY.md CONTRIBUTING.md CHANGELOG.md README.md
 ```
 
@@ -617,7 +617,7 @@ The Markdown diagrams below preserve the main controls in text form, so the PRD 
 │               │ Core: Rust native                                 │
 │               │ [ Check for updates ] [ View release notes ]    │
 │               │                                                   │
-│               │ Open source: MIT OR Apache-2.0 (pending audit)    │
+│               │ Open source: GPL-2.0-only                       │
 │               │ [ Source ] [ Licenses & notices ]                │
 │               │ [ Report an issue ] [ Export support bundle ]    │
 └───────────────┴───────────────────────────────────────────────────┘
@@ -1022,10 +1022,10 @@ IPC is local, Windows named pipe, ACLed to the expected user SID/session and ser
 ## 18. Licensing / source provenance protocol
 
 - Upstream `GestureSignv2` root license is **GPL version 2**. Direct mechanical C#→Rust translation, copying source blocks or importing the upstream gesture datasets as-is may create derivative/license obligations; we must **not** assume a Rust rewrite automatically breaks copyright derivation. [Upstream license](https://github.com/Tomclanc/GestureSignv2/blob/8e331791ca7c203a15f707871b803c2e94c63749/LICENSE).
-- Independent implementation of functional behavior using Microsoft documentation and original tests may be licensed permissively if source/asset provenance permits. Proposed root SPDX `MIT OR Apache-2.0`, not a guarantee until reviewed. Each crate and asset requires license information; Kando, UI fonts, icons, translations and installer assets should not be copied without individual checks.
-- Maintain `THIRD_PARTY_NOTICES.md`, `LICENSE-MIT`, `LICENSE-APACHE`, `docs/PROVENANCE.md`, SBOM. Keep link/credit to inspired upstream project; no copied screenshots or trademarked icon as product assets.
+- Independent implementation of functional behavior using Microsoft documentation and original tests may be licensed permissively if source/asset provenance permits. Current repository SPDX `GPL-2.0-only` (chosen by the project owner to align with GestureSign). Each crate and asset requires license information; Kando, UI fonts, icons, translations and installer assets should not be copied without individual checks.
+- Maintain `development/docs/THIRD_PARTY_NOTICES.md`, root `LICENSE`, `development/docs/PROVENANCE.md`, SBOM. Keep link/credit to inspired upstream project; no copied screenshots or trademarked icon as product assets.
 - Mandatory release command pipeline: `cargo fmt`, `cargo clippy -- -D warnings`, `cargo test`, Windows unit/integration tests, `cargo audit` (or equivalent advisory scan), crate license scanner, `cargo deny` policy, SBOM generator, artifact checksum and signing if production signing credentials available.
-- Public GitHub repo stays uncreated until user expressly asks to proceed with implementation; this document is an implementation specification, not authorization to publish code.
+- Gestouch is published at https://github.com/lustresense/gestouch. This PRD describes a broader target than the current v0.0.1 source preview; do not claim future features are shipped.
 
 ---
 

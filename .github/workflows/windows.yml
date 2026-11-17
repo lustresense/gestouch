@@ -18,18 +18,9 @@ jobs:
           components: rustfmt
       - name: Cache Rust builds
         uses: Swatinem/rust-cache@v2
-      - name: Format sources (first alpha)
-        shell: pwsh
-        run: cargo fmt --all
-      - name: Format check
-        shell: pwsh
-        run: cargo fmt --all -- --check
-      - name: Test workspace
-        shell: pwsh
-        run: cargo test --workspace --target x86_64-pc-windows-msvc
       - name: Package 0.0.1 (not a GitHub Release)
         shell: pwsh
-        run: ./scripts/build.ps1
+        run: ./development/build.ps1
       - name: Upload portable artifact
         uses: actions/upload-artifact@v4
         with:

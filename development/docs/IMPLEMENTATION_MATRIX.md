@@ -14,7 +14,7 @@
 | Brightness | Not implemented | API backend per-device and capability detection |
 | 17-screen UI | 5 basic native pages + 17-screen HTML reference | UI screens UI-00..UI-16 |
 | Windows dark theme / DPI | OS-default colors; no custom theme | UI design tokens / tests |
-| Login autostart | Task Scheduler code/scripts; unverified | `scripts/install.ps1` / Settings |
+| Login autostart | Task Scheduler code/scripts; unverified | `development/scripts/install.ps1` / Settings |
 | Real Windows Service | SCM process plus scheduled-task trigger; experimental | Multi-session/security hardening pending |
 | Resume recovery | Re-registration trigger; unverified | agent main |
 | Health | Per-user snapshot file; no authenticated IPC | alpha only |
@@ -22,6 +22,6 @@
 | Plugin architecture | Not implemented, intentionally no untrusted DLL loading | Future security review |
 | Config import/export | TOML schema 1, backup on save; no UI import | Future restore flow |
 | Release pipeline | Windows CI artifact only | GitHub Release deferred until owner confirms build |
-| Performance | Goals only; `measure.ps1` can collect evidence | 30-minute idle and active capture needed |
+| Performance | Goals only; `development/scripts/measure.ps1` can collect evidence | 30-minute idle and active capture needed |
 
 **Scope principle:** v0.0.1 is an experimental implementation milestone, not the 1.0 full PRD realization. Source compilation has not yet been verified in this environment, which has no Rust/MSVC toolchain.

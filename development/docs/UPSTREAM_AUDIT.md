@@ -100,7 +100,7 @@ The complete Git tree was enumerated through GitHub's recursive tree endpoint: *
 
 **Observed:** upstream repo root `LICENSE` is GNU GPL version 2. The GPL's copyleft obligations must be evaluated if any original source is copied or a distributed derivative work is made. Merely implementing similar *functions, requirements, or ideas* independently does not automatically impose GPL on an independently written implementation.
 
-**Recommendation:** independently implement the Rust code with original types, state machines, documentation, and tests; use public Microsoft API specifications and license-compatible examples. Choose `MIT OR Apache-2.0` if all future third-party code and contributions permit this. Include an acknowledgements page that credits upstream inspiration but does not copy implementation. Do **not** mechanically transpile GPL C# code and then relicense it permissively. If actual upstream source is reused or adapted, review specific licenses/rights and choose GPL-compatible distribution with proper notices and corresponding source.
+**Recommendation:** independently implement the Rust code with original types, state machines, documentation, and tests; use public Microsoft API specifications and license-compatible examples. The owner chose `GPL-2.0-only` for Gestouch. This choice aligns licensing policy with the GPL-v2 upstream projects, but it does not imply upstream code was copied. Include an acknowledgements page that credits upstream inspiration but does not copy implementation. Do **not** mechanically transpile GPL C# code and then relicense it permissively. If actual upstream source is reused or adapted, review specific licenses/rights and choose GPL-compatible distribution with proper notices and corresponding source.
 
 **Needs further review before shipping:** each bundled asset, copied/default gesture dataset, external sample code, libraries/crates, icons, translation catalogs, installer helper, optional models and their individual licenses. An SPDX/NOTICE/SBOM check is a release gate.
 
@@ -123,4 +123,4 @@ The complete Git tree was enumerated through GitHub's recursive tree endpoint: *
 - Microsoft — Logon triggers: https://learn.microsoft.com/en-us/windows/win32/taskschd/logontrigger
 - Microsoft — Service user accounts: https://learn.microsoft.com/en-us/windows/win32/services/service-user-accounts
 
-**Final audit classification:** good reference for behavior and edge cases; **not** a low-risk base for an MIT-licensed mechanical Rust port. Independent, feature-gated Rust implementation recommended, with Phase 0 hardware feasibility as a mandatory stop/go milestone.
+**Final audit classification:** good reference for behavior and edge cases; **not** a low-risk base for a mechanical C#→Rust port. Independent, feature-gated Rust implementation recommended, with Phase 0 hardware feasibility as a mandatory stop/go milestone.

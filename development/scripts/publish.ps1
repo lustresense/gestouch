@@ -2,7 +2,7 @@
 [CmdletBinding()]
 param([string]$Repository='lustresense/gestouch',[switch]$Private)
 $ErrorActionPreference='Stop'
-Set-Location (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+Set-Location (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 if(-not(Get-Command git -ErrorAction SilentlyContinue)){throw 'Git is required: https://git-scm.com/downloads/win'}
 if(-not(Get-Command gh -ErrorAction SilentlyContinue)){throw 'GitHub CLI required: winget install --id GitHub.cli'}
 & gh auth status

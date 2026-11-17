@@ -80,11 +80,11 @@ impl Ui {
         self.button(hwnd,3,"Enable at login",270,203,205,STARTUP_ON);
         self.button(hwnd,3,"Disable at login",495,203,205,STARTUP_OFF);
         self.label(hwnd,3,"Optional genuine Windows Service (administrator install):",270,283,630,34);
-        self.label(hwnd,3,"Run scripts\\install.ps1 -Service from elevated PowerShell. The service is a\nsupervisor only; gestures are handled by this user's agent, never Session 0.\nService Mode is experimental in 0.0.1.",270,335,650,115);
+        self.label(hwnd,3,"Run development\\scripts\\install.ps1 -Service from elevated PowerShell. The service is a\nsupervisor only; gestures are handled by this user's agent, never Session 0.\nService Mode is experimental in 0.0.1.",270,335,650,115);
 
         self.label(hwnd,4,"About Gestouch",270,32,620,46);
         self.label(hwnd,4,"Gestouch 0.0.1 · Independent Rust implementation",270,103,620,44);
-        self.label(hwnd,4,"Windows 11 x64 · native Win32 GUI and per-user background engine\nLicense: MIT OR Apache-2.0\nUpstream GestureSign V2 remains GPL-2.0 and is NOT included.\n\nStatus: Developer preview. HID behavior and memory usage require real Windows validation.\nUI: Native shell in alpha; complete design flows are documented in docs/WIREFRAMES.html.",270,170,640,320);
+        self.label(hwnd,4,"Windows 11 x64 · native Win32 GUI and per-user background engine\nLicense: GPL-2.0-only\nInspired by GestureSign V2 (GPL-2.0); upstream C# source is not included.\n\nStatus: Developer preview. HID behavior and memory usage require real Windows validation.\nUI: Native shell in alpha; complete design flows are documented in development/design/WIREFRAMES.html.",270,170,640,320);
         SetTimer(hwnd,TIMER_REFRESH,3500,None);
         self.render();self.refresh();
     }

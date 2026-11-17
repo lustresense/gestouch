@@ -1,5 +1,5 @@
 # Gestouch 0.0.1 — ONE-COMMAND Windows build (PowerShell 5.1+)
-# Run from any directory: powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1
+# Run from any directory: powershell -ExecutionPolicy Bypass -File .\development\build.ps1
 # Optional: -Install; optional advanced: -Install -Service (elevated PowerShell).
 [CmdletBinding()]
 param([switch]$Install,[switch]$Service)
@@ -49,15 +49,20 @@ foreach ($name in @('gestouch-agent','gestouch-settings','gestouch-service')) {
     if (-not (Test-Path $source)) { throw "Build output missing: $source" }
     Copy-Item $source $distribution
 }
-New-Item -ItemType Directory -Force (Join-Path $distribution 'scripts') | Out-Null
-New-Item -ItemType Directory -Force (Join-Path $distribution 'docs') | Out-Null
-Copy-Item (Join-Path $root 'scripts\install.ps1') (Join-Path $distribution 'scripts\')
-Copy-Item (Join-Path $root 'scripts\uninstall.ps1') (Join-Path $distribution 'scripts\')
-Copy-Item (Join-Path $root 'README.md') $distribution
-Copy-Item (Join-Path $root 'LICENSE-MIT') $distribution
-Copy-Item (Join-Path $root 'LICENSE-APACHE') $distribution
-Copy-Item (Join-Path $root 'docs\PRD_Gestouch_v1.0.md') (Join-Path $distribution 'docs\')
-Copy-Item (Join-Path $root 'docs\WIREFRAMES.html') (Join-Path $distribution 'docs\')
+# Keep the public README's relative links usable inside the portable archive.
+New-Item -ItemType Directory -Force (Join-Path $distribution 'development\scripts') | Out-Null
+New-Item -ItemType Directory -Force (Join-Path $distribution 'development\docs') | Out-Null
+New-Item -ItemType Directory -Force (Join-Path $distribution 'development\design') | Out-Null
+Copy-Item (Join-Path $root 'development\scripts\install.ps1') (Join-Path $distribution 'development\scripts\')
+Copy-Item (Join-Path $root 'development\scripts\uninstall.ps1') (Join-Path $distribution 'development\scripts\')
+Copy-Item (Join-Path $root 'development\scripts\measure.ps1') (Join-Path $distribution 'development\scripts\')
+Copy-Item (Join-Path $root 'development\docs\*') (Join-Path $distribution 'development\docs\')
+Copy-Item (Join-Path $root 'development\design\*') (Join-Path $distribution 'development\design\')
+foreach ($name in @('README.md','LICENSE','CHANGELOG.md','SECURITY.md')) {
+    Copy-Item (Join-Path $root $name) $distribution
+}
+Copy-Item (Join-Path $root 'development\README.md') (Join-Path $distribution 'development\')
+Copy-Item (Join-Path $root 'development\CONTRIBUTING.md') (Join-Path $distribution 'development\')
 $archive = Join-Path $root "dist\Gestouch-$version-win-x64-portable.zip"
 if (Test-Path $archive) {Remove-Item -Force $archive}
 Step 'Create portable ZIP'
@@ -65,7 +70,7 @@ Compress-Archive -Path (Join-Path $distribution '*') -DestinationPath $archive -
 Write-Host "`nBuilt successfully: $archive" -ForegroundColor Green
 if ($Install) {
     Step 'Install'
-    $installer = Join-Path $root 'scripts\install.ps1'
+    $installer = Join-Path $root 'development\scripts\install.ps1'
     & $installer -SourceDirectory $distribution -Service:$Service
     if (-not $?) {throw 'Installation failed'}
 }

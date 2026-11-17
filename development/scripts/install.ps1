@@ -4,7 +4,7 @@ param([string]$SourceDirectory = '',[switch]$Service)
 $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest
 if([string]::IsNullOrWhiteSpace($SourceDirectory)){
-  $parent=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $parent=(Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
   if(Test-Path (Join-Path $parent 'gestouch-agent.exe')){$SourceDirectory=$parent}
   else{$SourceDirectory=Join-Path $parent 'dist\Gestouch-0.0.1-win-x64'}
 }

@@ -8,5 +8,6 @@
 - Win32 system tray, media and volume hotkeys, limited resume/device recovery.
 - Optional real SCM supervisor delegated to an interactive Task Scheduler task.
 - PowerShell build/install/uninstall/performance scripts, interactive design wireframes and complete PRD.
+- Repo reorganized for a public launch: all maintainer materials live under `development/`, and the project license was standardized to GNU GPL-2.0-only.
 
 **Validation pending:** Windows compilation, device compatibility, resource benchmarks and GitHub release.
