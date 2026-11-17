@@ -1,0 +1,38 @@
+name: Windows CI (no auto-release)
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust stable MSVC
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+          components: rustfmt
+      - name: Cache Rust builds
+        uses: Swatinem/rust-cache@v2
+      - name: Format sources (first alpha)
+        shell: pwsh
+        run: cargo fmt --all
+      - name: Format check
+        shell: pwsh
+        run: cargo fmt --all -- --check
+      - name: Test workspace
+        shell: pwsh
+        run: cargo test --workspace --target x86_64-pc-windows-msvc
+      - name: Package 0.0.1 (not a GitHub Release)
+        shell: pwsh
+        run: ./scripts/build.ps1
+      - name: Upload portable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Gestouch-0.0.1-win-x64-CI
+          path: dist/Gestouch-0.0.1-win-x64-portable.zip
+          if-no-files-found: error

@@ -1,0 +1,13 @@
+/target/
+/dist/
+*.pdb
+*.exe
+*.msi
+*.zip
+*.log
+*.tmp
+*.bak
+*.csv
+.DS_Store
+.vs/
+.idea/

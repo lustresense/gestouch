@@ -1,0 +1,13 @@
+[package]
+name = "gestouch-agent"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+gestouch-core = { path = "../gestouch-core" }
+gestouch-win = { path = "../gestouch-win" }
+
+[[bin]]
+name = "gestouch-agent"
+path = "src/main.rs"

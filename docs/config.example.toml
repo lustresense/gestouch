@@ -1,0 +1,30 @@
+# Gestouch v0.0.1 (illustrative; the first run creates this schema automatically)
+schema_version = 1
+enabled = true
+start_at_login = false
+
+[[rules]]
+id = "example-3-left"
+name = "Three-finger left — previous track"
+enabled = true
+
+[rules.trigger]
+kind = "swipe"
+fingers = 3
+direction = "left"
+
+[rules.action]
+type = "media_previous"
+
+[[rules]]
+id = "example-3-right"
+name = "Three-finger right — next track"
+enabled = true
+
+[rules.trigger]
+kind = "swipe"
+fingers = 3
+direction = "right"
+
+[rules.action]
+type = "media_next"

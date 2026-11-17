@@ -1,0 +1,16 @@
+[workspace]
+members = ["crates/gestouch-core", "crates/gestouch-win", "crates/gestouch-agent", "crates/gestouch-settings", "crates/gestouch-service"]
+resolver = "2"
+
+[workspace.package]
+version = "0.0.1"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["Gestouch contributors"]
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
+panic = "abort"
+opt-level = "z"

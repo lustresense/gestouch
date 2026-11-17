@@ -1,0 +1,9 @@
+[package]
+name = "gestouch-service"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "gestouch-service"
+path = "src/main.rs"
